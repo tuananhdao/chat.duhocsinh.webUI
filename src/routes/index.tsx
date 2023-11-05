@@ -123,7 +123,7 @@ export default function Index() {
                 className="bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"
                 type="submit"
               >
-                Send
+                <img src="images/send.svg" width="20" height="20" />
               </button>
             ) : null}
           </form>
