@@ -1,22 +1,23 @@
 import fetch from 'node-fetch';
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 export const Welcome: React.FC = () => {
-  /*let contributors = '';
-
-  fetch("https://api.github.com/repos/tuananhdao/chat.duhocsinh.api/contributors", {
-    method: 'GET'
-  }).then(async (response) => {
-    let response_json:any = [];
-    response_json = await response.json();
-    let contributors_array = [];
-    for (let i = 0; i <response_json.length; i++)
-      contributors_array.push('@' + response_json[i]['login']);
-    
-      contributors = contributors_array.join(', ');
-      console.log(contributors);
-  });*/
+  const [contributors, setContributors] = useState("");
+  useEffect(() => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.github.com/repos/tuananhdao/chat.duhocsinh.api/contributors');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        let contributors_array = [];
+        let response_json = JSON.parse(xhr.responseText);
+        for (let i = 0; i <response_json.length; i++)
+          contributors_array.push('@' + response_json[i]['login']);
+          setContributors(contributors_array.join(', '));
+      }
+    };
+    xhr.send();
+  }, []);
 
   return (
   <div className="bg-white border-gray-100 border-2 rounded-lg px-8 py-5 mr-20 w-full">
@@ -26,11 +27,11 @@ export const Welcome: React.FC = () => {
     </p>
     <p>
       <br />
-      Contributors:
+      Developers: {contributors}
 
       <br />
       <a className="underline" target="_blank" href="https://github.com/tuananhdao/chat.duhocsinh.api">
-	      <img src="images/github.svg" className="inline h-5 w-5 leading-5" /> Github repo
+	      <img src="images/github.svg" className="inline h-5 w-5 leading-5" /> Join us on Github
       </a>
     </p>
   </div>
