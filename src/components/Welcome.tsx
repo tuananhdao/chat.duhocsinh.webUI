@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 export const Welcome: React.FC = () => {
-  let contributors = '';
+  /*let contributors = '';
 
   fetch("https://api.github.com/repos/tuananhdao/chat.duhocsinh.api/contributors", {
     method: 'GET'
@@ -16,7 +16,7 @@ export const Welcome: React.FC = () => {
     
       contributors = contributors_array.join(', ');
       console.log(contributors);
-  });
+  });*/
 
   return (
   <div className="bg-white border-gray-100 border-2 rounded-lg px-8 py-5 mr-20 w-full">
@@ -26,7 +26,7 @@ export const Welcome: React.FC = () => {
     </p>
     <p>
       <br />
-      Contributors: {contributors}
+      Contributors:
 
       <br />
       <a className="underline" target="_blank" href="https://github.com/tuananhdao/chat.duhocsinh.api">

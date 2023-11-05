@@ -124,7 +124,7 @@ export function useChat() {
       if (response.ok) {
         const result = await response.json();
         let answer_with_sources = result['result'];
-        answer_with_sources += "\n\n\n\n<br />**Here are the useful sources that I found**:"
+        answer_with_sources += "\n\n&nbsp;\ \n\n**My answer is based on the following sources**:"
         for (let i = 0; i < result['source_documents'].length; i++) {
           const the_source = result['source_documents'][i];
           answer_with_sources += "\n\n";
