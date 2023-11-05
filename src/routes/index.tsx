@@ -50,17 +50,6 @@ export default function Index() {
             {chatHistory.length === 0 ? (
               <>
                 <Welcome />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {appConfig.samplePhrases.map((phrase) => (
-                    <button
-                      key={phrase}
-                      onClick={() => sendMessage(phrase, chatHistory)}
-                      className="bg-gray-100 border-gray-300 border-2 rounded-lg p-4"
-                    >
-                      {phrase}
-                    </button>
-                  ))}
-                </div>
               </>
             ) : (
               chatHistory.map((chat, i) => (
@@ -73,7 +62,22 @@ export default function Index() {
 
           <div ref={bottomRef} />
         </section>
-        <div className="flex items-center justify-center h-20">
+        <div className="flex items-center justify-center">
+          {chatHistory.length === 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-3">
+                {appConfig.samplePhrases.map((phrase) => (
+                  <button
+                    key={phrase}
+                    onClick={() => sendMessage(phrase, chatHistory)}
+                    className="bg-gray-100 border-gray-300 border-2 rounded-lg p-4"
+                  >
+                    {phrase}
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : null}
           {state === "idle" ? null : (
             <button
               className="bg-gray-100 text-gray-900 py-2 px-4 my-8"
