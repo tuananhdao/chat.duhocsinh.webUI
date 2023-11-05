@@ -29,9 +29,9 @@ The frontend is live at `localhost:3000`
 
 ### Deployment
 
-Run this command to build the static files to `/out` folder
+Run this command to build the static files to `/dist/static/` folder
 
 ```bash
 npm run build
 ```
-Then upload the content of the `/out` folder to the public folder which hosts the frontend.
+Then upload the content of the `/dist/static/` folder to the public folder which hosts the frontend.

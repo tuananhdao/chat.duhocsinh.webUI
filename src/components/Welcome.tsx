@@ -1,14 +1,12 @@
 export const Welcome: React.FC = () => (
   <div className="bg-white border-gray-100 border-2 rounded-lg px-8 py-5 mr-20 w-full">
-    <h1 className="text-2xl font-bold mb-2">🤖 Hello, I am Daneel</h1>
+    <h1 className="text-2xl font-bold mb-2">Hello,</h1>
     <p>
-      You can use me to create your own chat bot app. In this demo I am an
-      expert in movie reviews, so feel free to ask me about movies! Then, create
-      your own bot in under five minutes.
+      I am an AI assistant specializing in information regarding to studying and living in Sweden. What makes me so special is that I will give you exact source documents of each information I provide.
     </p>
     <p>
-      <a className="underline" href="https://github.com/ascorbic/daneel#readme">
-        Build your own
+      <a className="underline" target="_blank" href="https://github.com/tuananhdao/chat.duhocsinh.api">
+        Github repo
       </a>
     </p>
   </div>
