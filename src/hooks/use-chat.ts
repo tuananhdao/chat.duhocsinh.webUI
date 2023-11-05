@@ -2,7 +2,7 @@ import { fetchEventSource } from "@fortaine/fetch-event-source";
 import { useState, useMemo } from "react";
 import { appConfig } from "../../config.browser";
 
-const API_PATH = "/api/chat";
+const API_PATH = "https://api.duhocsinh.se:8000/q";
 interface ChatMessage {
   role: "user" | "assistant";
   content: string;
@@ -66,7 +66,7 @@ export function useChat() {
 
     // This is like an EventSource, but allows things like
     // POST requests and headers
-    fetchEventSource(API_PATH, {
+    /* fetchEventSource(API_PATH, {
       body,
       method: "POST",
       signal: abortController.signal,
@@ -109,7 +109,36 @@ export function useChat() {
             break;
         }
       },
+    }); */
+
+    // -------------- Fetch --------------
+    fetch(API_PATH, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      signal: abortController.signal,
+      body: body,
+      mode: 'cors'
+    }).then(async (response) => {
+      const result = await response.json();
+      let answer_with_sources = result['result'];
+      answer_with_sources += "\n\n\n\nHere are the useful sources that I found:"
+      for (let i = 0; i < result['source_documents'].length; i++) {
+        const the_source = result['source_documents'][i];
+        answer_with_sources += "\n\n";
+        answer_with_sources += the_source['title'];
+        answer_with_sources += ": ";
+        answer_with_sources += the_source['source'];
+      }
+      setChatHistory((curr) => [
+        ...curr,
+        { role: "assistant", content: answer_with_sources } as const,
+      ]);
+      setCurrentChat(null);
+      setState("idle");
     });
+
   };
 
   return { sendMessage, currentChat, chatHistory, cancel, clear, state };
