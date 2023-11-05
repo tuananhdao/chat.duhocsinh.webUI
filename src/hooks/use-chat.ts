@@ -121,22 +121,33 @@ export function useChat() {
       body: body,
       mode: 'cors'
     }).then(async (response) => {
-      const result = await response.json();
-      let answer_with_sources = result['result'];
-      answer_with_sources += "\n\n\n\nHere are the useful sources that I found:"
-      for (let i = 0; i < result['source_documents'].length; i++) {
-        const the_source = result['source_documents'][i];
-        answer_with_sources += "\n\n";
-        answer_with_sources += the_source['title'];
-        answer_with_sources += ": ";
-        answer_with_sources += the_source['source'];
+      if (response.ok) {
+        const result = await response.json();
+        let answer_with_sources = result['result'];
+        answer_with_sources += "\n\n\n\nHere are the useful sources that I found:"
+        for (let i = 0; i < result['source_documents'].length; i++) {
+          const the_source = result['source_documents'][i];
+          answer_with_sources += "\n\n";
+          answer_with_sources += the_source['title'];
+          answer_with_sources += ": ";
+          answer_with_sources += the_source['source'];
+        }
+        setChatHistory((curr) => [
+          ...curr,
+          { role: "assistant", content: answer_with_sources } as const,
+        ]);
+        setCurrentChat(null);
+        setState("idle");
       }
-      setChatHistory((curr) => [
-        ...curr,
-        { role: "assistant", content: answer_with_sources } as const,
-      ]);
-      setCurrentChat(null);
-      setState("idle");
+      else
+      {
+        setChatHistory((curr) => [
+          ...curr,
+          { role: "assistant", content: "I am sorry. The server doesn't correctly response to my requests. Please go back later." } as const,
+        ]);
+        setCurrentChat(null);
+        setState("idle");
+      }
     });
 
   };
