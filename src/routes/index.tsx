@@ -70,7 +70,7 @@ export default function Index() {
                   <button
                     key={phrase}
                     onClick={() => sendMessage(phrase, chatHistory)}
-                    className="bg-gray-100 border-gray-300 border-2 rounded-lg p-4"
+                    className="bg-gray-100 border-gray-300 border-2 rounded-lg px-4 py-2"
                   >
                     {phrase}
                   </button>
@@ -83,7 +83,7 @@ export default function Index() {
               className="bg-gray-100 text-gray-900 py-2 px-4 my-8"
               onClick={cancel}
             >
-              Stop generating
+              Cancel
             </button>
           )}
         </div>
@@ -98,7 +98,7 @@ export default function Index() {
           >
             {chatHistory.length > 1 ? (
               <button
-                className="bg-gray-100 text-gray-600 py-2 px-4 rounded-l-lg"
+                className="hidden md:block bg-red-500 text-white py-2 px-4 rounded-l-lg"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();

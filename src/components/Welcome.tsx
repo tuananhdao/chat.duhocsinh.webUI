@@ -28,7 +28,7 @@ export const Welcome: React.FC = () => {
   return (
   <div className="bg-white border-gray-100 border-2 rounded-lg px-8 py-5 mr-20 w-full">
     <h1 className="text-2xl font-bold mb-2">Hej,</h1>
-    <p>
+    <p className='text-justify'>
       I am an AI assistant specializing in information regarding to studying and living in Sweden. What makes me so special is that I will show you the reliable sources of the information I provide. I can answer questions in English, Swedish, and Vietnamese.
     </p>
     <p>

@@ -32,6 +32,14 @@ const CustomTable: FunctionComponent<
   );
 };
 
+function LinkRenderer(props: any) {
+  return (
+    <a href={props.href} target="_blank" rel="noreferrer" className="underline">
+      {props.children}
+    </a>
+  );
+}
+
 /**
  * This component renders a single chat message. It is rendered according to
  * whether it isa  message from the assistant or the user.
@@ -54,6 +62,7 @@ export const ChatMessage: React.FC<React.PropsWithChildren<Props>> = ({
           remarkPlugins={[remarkGfm]}
           components={{
             table: CustomTable,
+            a: LinkRenderer
           }}
         />
       </div>

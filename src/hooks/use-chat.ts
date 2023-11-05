@@ -127,10 +127,9 @@ export function useChat() {
         answer_with_sources += "\n\n&nbsp;\ \n\n**My answer is based on the following sources**:"
         for (let i = 0; i < result['source_documents'].length; i++) {
           const the_source = result['source_documents'][i];
-          answer_with_sources += "\n\n";
+          answer_with_sources += "\n\n" + (i+1) + ". ";
           answer_with_sources += the_source['title'];
-          answer_with_sources += ": ";
-          answer_with_sources += the_source['source'];
+          answer_with_sources += " ([Link]("+the_source['source']+"))";
         }
         setChatHistory((curr) => [
           ...curr,
