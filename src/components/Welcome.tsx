@@ -1,4 +1,24 @@
-export const Welcome: React.FC = () => (
+import fetch from 'node-fetch';
+import { useState } from "react";
+
+
+export const Welcome: React.FC = () => {
+  let contributors = '';
+
+  fetch("https://api.github.com/repos/tuananhdao/chat.duhocsinh.api/contributors", {
+    method: 'GET'
+  }).then(async (response) => {
+    let response_json:any = [];
+    response_json = await response.json();
+    let contributors_array = [];
+    for (let i = 0; i <response_json.length; i++)
+      contributors_array.push('@' + response_json[i]['login']);
+    
+      contributors = contributors_array.join(', ');
+      console.log(contributors);
+  });
+
+  return (
   <div className="bg-white border-gray-100 border-2 rounded-lg px-8 py-5 mr-20 w-full">
     <h1 className="text-2xl font-bold mb-2">Hej,</h1>
     <p>
@@ -6,7 +26,7 @@ export const Welcome: React.FC = () => (
     </p>
     <p>
       <br />
-      Contributors: 
+      Contributors: {contributors}
 
       <br />
       <a className="underline" target="_blank" href="https://github.com/tuananhdao/chat.duhocsinh.api">
@@ -14,4 +34,4 @@ export const Welcome: React.FC = () => (
       </a>
     </p>
   </div>
-);
+)};
