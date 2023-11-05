@@ -40,6 +40,18 @@ function LinkRenderer(props: any) {
   );
 }
 
+const olStyle = {
+  listStyle: 'decimal inside'
+}
+
+function olRenderer(props: any) {
+  return (
+    <ol style={olStyle}>
+      {props.children}
+    </ol>
+  );
+}
+
 /**
  * This component renders a single chat message. It is rendered according to
  * whether it isa  message from the assistant or the user.
@@ -62,7 +74,8 @@ export const ChatMessage: React.FC<React.PropsWithChildren<Props>> = ({
           remarkPlugins={[remarkGfm]}
           components={{
             table: CustomTable,
-            a: LinkRenderer
+            a: LinkRenderer,
+            ol: olRenderer
           }}
         />
       </div>
