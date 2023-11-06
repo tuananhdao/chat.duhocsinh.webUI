@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul li p, ol li p {
+   display: inline;
+} 
